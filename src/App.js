@@ -1,24 +1,24 @@
 import logo from './logo.svg';
+import { BrowserRouter as Router, Route, Routes, Switch } from "react-router-dom";
+import HomePage from "./routes/HomePage"
+import AppDrawer from "./routes/AppDrawer"
+import AppPage from "./routes/AppPage"
+import {useState} from "react"
 import './App.css';
 
 function App() {
+  const [noOfClicks,updateNoOfClicks]=useState(1);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    <Router>
+      <Routes>
+        <Route Exact path="/" element ={<HomePage clicksHandler={[noOfClicks,updateNoOfClicks]}/>} />
+        <Route path="/AppDrawer" element ={<AppDrawer/>} />
+        <Route path="/AppPage/:AppName" element ={<AppPage/>} />
+      </Routes>
+    </Router>
     </div>
+
   );
 }
 
